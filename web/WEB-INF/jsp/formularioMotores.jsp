@@ -9,18 +9,19 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Formulario Motores</title>
 
         <style type="text/css">
             body {
-                color: purple;
-                background-color: #d8da3d;
+                color: #000000;
+                background-color: #FFE4C4;
+                font-family: Tahoma;
             }
             input.mayuscula {
                 text-transform: uppercase;
             }
             #menu {
-                background-color: red;
+                background-color: #D3D3D3;
 
             }
         </style>
@@ -28,10 +29,11 @@
         <script>
             var objeto = new XMLHttpRequest;
 
-            function comprobarCodigoMotor() {
-                var codigo = document.getElementById("codigo").value;
+            function comprobarCodigoMotor() {                
+                var codigo = document.getElementById("codigo").value.toUpperCase();
+                document.getElementById("codigo").value = codigo;
                 if (codigo != "") {
-                    objeto.open("POST", "consultaCodigoMotorAjax.htm", true);
+                    objeto.open("POST", "consultaCodigoMotor.htm", true);
                     objeto.onreadystatechange = muestravalor;
                     objeto.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                     objeto.send("codigo=" + codigo);
@@ -107,13 +109,27 @@
                 document.getElementById("codigo").value = "";
                 document.getElementById("codigo").focus();
                 document.getElementById("botonAlta").disabled = true;
-                document.getElementById("botonBaja").disabled = true;
+                document.getElementById("botonBaja").disabled = false;
                 document.getElementById("botonModificar").disabled = true;
                 document.getElementById("ir").disabled = false;
             }
             function alta(){
                 document.getElementById("botonAlta").disabled = false;
                 document.getElementById("descripcion").focus();
+            }
+            function darDeAlta(){
+                document.getElementById("formMotor").action="altaMotor.htm";
+                document.getElementById("formMotor").submit();
+            }
+           
+            function darDeBaja(){
+                document.getElementById("formMotor").action="bajaMotor.htm";
+                document.getElementById("formMotor").submit();
+            }
+            
+            function modificar(){
+                document.getElementById("formMotor").action="modificarMotor.htm";
+                document.getElementById("formMotor").submit();
             }
 
 
@@ -123,27 +139,29 @@
 
     </head>
     <body>
-        <h1>Alta de Motores con AJAX</h1>
+        <h1>Formulario de Motores</h1>
         <br>
-        <form name="altaMotor" id="altaMotor" action="" method="POST">
+        <form name="formMotor" id="formMotor" action="" method="POST">
             <fieldset><legend>Datos del motor</legend>
                 <p><label>Nº Motor</label>
                     <input name="idmotor" id="idmotor" disabled="true" size="4"/>
                 <p><label>Código : </label><input name="codigo" id="codigo" size="10" class="mayuscula"/>
                     <input type="button" id="ir" value="Ir" onclick="comprobarCodigoMotor()"</p>
-                <p><label>Descripción : </label><input name="descripcion" id="descripcion" size="40" class="mayuscula"/></p>
+                <p><label>Descripción : </label><input name="descripcion" id="descripcion" size="40" 
+                                                       onkeyup="this.value = this.value.toUpperCase()"
+                                                       class = "mayuscula"/></p>
                 <p><label>Cilindrada : </label><input name="cilindrada" id="cilindrada" size="8"/>
                     <label>Kw : </label><input name="kilowatios" id="kilowatios" size="4"/>
                     <label>Cv : </label><input name="cv" id="cv" disabled="true" size ="4"/></p>            
             </fieldset>
 
-            <fieldset><legend>Menú de opciones</legend>
+            <fieldset style color="black"><legend>Menú de opciones</legend>
                 <div id="menu">
-                    <input type="submit" value="Alta" id="botonAlta" disabled ="true"/>
-                    <input type="submit" value="Baja" id="botonBaja" disabled ="true"/>
-                    <input type="submit" value="Modificar" id="botonModificar" disabled ="true"/>
-                    <input type="reset" value="Limpiar Formulario" id="borrarFormulario" onclick="inicio()"/>
-                    <input type="submit" value="Listado" onclick="listado()"/>
+                    <input type="submit" value="Alta" id="botonAlta" disabled ="false" onclick="darDeAlta();"/>
+                    <input type="submit" value="Baja" id="botonBaja" disabled ="false" onclick="darDeBaja();" />
+                    <input type="submit" value="Modificar" id="botonModificar" disabled ="false" onclick="modificar();"/>
+                    <input type="reset" value="Limpiar Formulario" id="borrarFormulario" onclick="inicio();"/>
+                    <input type="submit" value="Listado" onclick="listado();"/>
                 </div>
             </fieldset>
 
