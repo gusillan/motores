@@ -29,10 +29,9 @@ public class Motor implements java.io.Serializable {
      private String descripcion;
      private String cilindrada;
      private String kilowatios;
-     private Set modelos = new HashSet<Modelo>(0);
+    
 
-    public Motor() {
-    }
+    public Motor() {    }
 
 	
     public Motor(String codigo, String descripcion, String cilindrada, String kilowatios) {
@@ -41,15 +40,9 @@ public class Motor implements java.io.Serializable {
         this.cilindrada = cilindrada;
         this.kilowatios = kilowatios;
     }
-    public Motor(String codigo, String descripcion, String cilindrada, String kilowatios, Set modelos) {
-       this.codigo = codigo;
-       this.descripcion = descripcion;
-       this.cilindrada = cilindrada;
-       this.kilowatios = kilowatios;
-       this.modelos = modelos;
-    }
+    
    
-     @Id @GeneratedValue(strategy=IDENTITY)
+    @Id @GeneratedValue(strategy=IDENTITY)
     
     @Column(name="idmotor", unique=true, nullable=false)
     public Integer getIdmotor() {
@@ -95,16 +88,6 @@ public class Motor implements java.io.Serializable {
     public void setKilowatios(String kilowatios) {
         this.kilowatios = kilowatios;
     }
-@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="motor")
-    public Set<Modelo> getModelos() {
-        return this.modelos;
-    }
-    
-    public void setModelos(Set modelos) {
-        this.modelos = modelos;
-    }
-
-
 
 
 }

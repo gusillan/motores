@@ -1,17 +1,16 @@
 package com.pacoillan.DAOHibernate;
 
-
 import com.pacoillan.DAO.GenericDAO;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.PersistenceException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 //http://sobrejava.com/articulos/ejemplo-de-dao-generico-con-jpa
-
 public abstract class GenericDAOHibernate<T, Id extends Serializable>
         implements GenericDAO<T, Id> {
 
@@ -19,16 +18,15 @@ public abstract class GenericDAOHibernate<T, Id extends Serializable>
     private Session session;
     private Transaction tx;
     protected Class<T> domainClass = getDomainClass();
-    
 
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
-    protected Class getDomainClass(){
-        if (domainClass == null){
-            ParameterizedType thisType = (ParameterizedType)getClass().getGenericSuperclass();
-            domainClass = (Class)thisType.getActualTypeArguments()[0];
+    protected Class getDomainClass() {
+        if (domainClass == null) {
+            ParameterizedType thisType = (ParameterizedType) getClass().getGenericSuperclass();
+            domainClass = (Class) thisType.getActualTypeArguments()[0];
         }
         return domainClass;
     }
@@ -46,7 +44,7 @@ public abstract class GenericDAOHibernate<T, Id extends Serializable>
     @Override
     public T read(Id id) {
         session = sessionFactory.openSession();
-        T objeto = (T)session.load(domainClass, id);
+        T objeto = (T) session.get(domainClass, id);
         session.close();
         return objeto;
     }
@@ -64,10 +62,16 @@ public abstract class GenericDAOHibernate<T, Id extends Serializable>
     @Override
     public void delete(T objeto) {
         session = sessionFactory.openSession();
-        tx = session.beginTransaction();
-        session.delete(objeto);
-        tx.commit();
-        session.close();
+        try {
+            tx = session.beginTransaction();
+            session.delete(objeto);
+            tx.commit();
+        }catch (PersistenceException e){
+            tx.rollback();
+            throw e;
+        }finally{
+            session.close();
+        }       
 
     }
 
@@ -92,7 +96,7 @@ public abstract class GenericDAOHibernate<T, Id extends Serializable>
         session.close();
         return lista;
     }
-    
+
     @Override
     public List<T> listadoPorCampoExacto(String campo, String dato) {
         String pojo = domainClass.getSimpleName();
@@ -103,6 +107,4 @@ public abstract class GenericDAOHibernate<T, Id extends Serializable>
         session.close();
         return lista;
     }
-
-   
 }
