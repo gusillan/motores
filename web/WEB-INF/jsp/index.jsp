@@ -10,7 +10,7 @@
 
     <body>
         <a href ="formularioMotores.htm">Formulario de Motores</a><br>
-        <a href ="listadoMotores.htm">Listado de motores</a><br>
+        <a href ="listaMotor.htm">Listado de motores</a><br>
         <br><br>
         <a href ="modelosAlta.htm">Alta de Modelos</a><br>
         <a href="modelosConsulta.htm">Consulta de modelos</a>

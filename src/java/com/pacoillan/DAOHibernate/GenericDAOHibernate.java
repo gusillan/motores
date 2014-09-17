@@ -74,10 +74,18 @@ public abstract class GenericDAOHibernate<T, Id extends Serializable>
         }       
 
     }
+    
+    public void delete(int id){
+        session = sessionFactory.openSession();
+        T objeto = (T) session.get(domainClass, id);
+        session.delete(objeto);
+        session.close();
+        
+    }
 
     @Override
     public List<T> listAll() {
-        List lista = new ArrayList();
+        List lista;
         session = sessionFactory.openSession();
         tx = session.beginTransaction();
         lista = session.createQuery("from Motor").list();

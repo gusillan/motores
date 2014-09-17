@@ -29,19 +29,23 @@
                 window.close();
                     
             }
+            function cargarOpciones(){
+                window.opener.cargarOpcionesSecundaria();
+            }
         </script>
 
         <title>Ventana Selectora</title>
     </head>
-    <body>
+    <body onload="cargarOpciones();">
         <h1 id="pru"></h1>
-        <br>
-        <select id="opciones" size="8">
+        
+        <select id="opciones" size="8" style="width: 270px">
 
-        </select>
-        <input type="button" name="seleccionar" value="Seleccionar" onclick="seleccionOpcion()">
-        <input type="button" name="alta" value="Dar de Alta" onclick="alta()">
-        <input type="button" name="cancelar" value="Cancelar" onclick="cerrarVentana()">
+        </select><br>
+        <br>
+        <input type="button" name="seleccionar" value="Seleccionar" onclick="seleccionOpcion();">
+        <input type="button" name="alta" value="Dar de Alta" onclick="alta();">
+        <input type="button" name="cancelar" value="Cancelar" onclick="cerrarVentana();">
     </body>
 </html>
 

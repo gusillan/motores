@@ -11,6 +11,7 @@ public interface GenericDAO<T,Id extends Serializable> {
     public void delete (T objeto);
     public List<T> listAll ();
     public List<T> listadoPorCampo(String campo, String dato);
-    public List<T> listadoPorCampoExacto (String campo, String dato);
+    public List<T> listadoPorCampoExacto(String campo, String dato);
     
+     public void delete(int id);
 }
