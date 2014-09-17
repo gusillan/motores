@@ -1,0 +1,23 @@
+/* 
+    Document   : estilos
+    Created on : 15-sep-2014, 20:46:19
+    Author     : Gustabo
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+body {
+    color: #000000;
+    background-color: #FFE4C4;
+    font-family: Tahoma;
+}
+input.mayuscula {
+    text-transform: uppercase;
+}
+#menu {
+    background-color: #D3D3D3;
+
+}

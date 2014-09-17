@@ -23,19 +23,19 @@ public class MotorController {
     @Autowired
     MotorDAO motor;
    
-    @RequestMapping("listadoMotores.htm")
-    public ModelAndView listadoMotores() {
-
-        List<Motor> lista = new ArrayList<Motor>();
-        lista = motor.listAll();
+    @RequestMapping("listaMotor.htm")
+    public ModelAndView listaMotor() {
+     
+        System.out.println("Ha llegado al Controller Lista Motor-----");       
+        List lista = motor.listAll();
         //lista = motor.listadoPorCampo("kilowatios", "66");
-        if (lista.size() == 0) {
-            mv.setViewName("noexiste");
-            return mv;
-        }
-        System.out.println(lista);
-        mv.addObject("lista", lista);
+        if (lista.isEmpty()) {
+            mv.setViewName("noexiste");            
+        }else{
+        System.out.println("Esta es la lista" +lista);
+        mv.addObject("listado", lista);
         mv.setViewName("listadoMotores");
+        }
         return mv;
     }
 
@@ -53,7 +53,11 @@ public class MotorController {
     }
     
     @RequestMapping("bajaMotor.htm")
-    public ModelAndView bajaMotor(@ModelAttribute Motor mot) {
+    public ModelAndView bajaMotor(@ModelAttribute Motor mot) {                   
+        System.out.println("Dar de baja "+mot.getDescripcion()+" numero id "+mot.getIdmotor());
+        //Integer numero = mot.getIdmotor();
+        //System.out.println("numero "+numero);
+        //Motor m = motor.read(numero);
         motor.delete(mot);
         mv.addObject("motor", mot);
         mv.setViewName("formularioMotores");
@@ -95,6 +99,9 @@ public class MotorController {
 
             StringBuilder tXML = new StringBuilder("<?xml version='1.0'?>");
             tXML.append("<datos>");
+            tXML.append("<idmotor>");
+            tXML.append(m.getIdmotor());
+            tXML.append("</idmotor>");
             tXML.append("<codigo>");
             tXML.append(m.getCodigo());
             tXML.append("</codigo>");
@@ -158,9 +165,7 @@ public class MotorController {
         }
 
     }
-
     
-
     @RequestMapping("selector.htm")
     public String selector() {
         return "selector";
