@@ -1,8 +1,3 @@
-<%-- 
-    Document   : altaMotorAjax
-    Created on : 02-abr-2014, 22:52:32
-    Author     : Gustabo
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

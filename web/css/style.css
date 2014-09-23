@@ -1,0 +1,12 @@
+@charset "utf-8";
+/* style.css */
+
+body {
+    color: #333;
+    background-color: blanchedalmond; 
+}
+
+input.mayuscula {
+    text-transform: uppercase;
+}
+ 
