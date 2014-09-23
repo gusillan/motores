@@ -21,7 +21,7 @@
                 <div>
                     <label>Código</label>
                     <input type="text"  name="codigo" id="codigo" class="mayuscula" size="10" required/>
-                    <input type="button" id="ir" value="Ir" onclick="comprobarCodigoMotor();"</p>
+                    <input type="button" id="ir" value="Ir" />
                 </div>
                 <div>
                     <label>Descripción</label>
@@ -33,7 +33,7 @@
                     <label>Kw</label>
                     <input type="number" name="kilowatios" id="kilowatios" size="4"/>
                     <label>Cv</label>
-                    <input type="number" name="cv" id="cv" disabled="true" size ="4"/></p>            
+                    <input type="number" name="cv" id="cv" disabled="true" size ="4"/>            
                 </div>
             </fieldset>
 
