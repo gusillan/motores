@@ -1,3 +1,4 @@
+@charset "utf-8";
 /* 
     Document   : estilos
     Created on : 15-sep-2014, 20:46:19
@@ -6,9 +7,7 @@
         Purpose of the stylesheet follows.
 */
 
-root { 
-    display: block;
-}
+
 body {
     color: #000000;
     background-color: #FFE4C4;
