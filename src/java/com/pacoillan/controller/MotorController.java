@@ -46,29 +46,22 @@ public class MotorController {
 
     @RequestMapping("altaMotor.htm")
     public ModelAndView altaMotor(@ModelAttribute Motor mot) {
-        Motor mo = motor.create(mot);
-        mv.addObject("motor", mo);
+        System.err.println("/////***** OJO SE VA A DAR DE ALTA ****** ////"+mot.getDescripcion() );
+        motor.create(mot);
         mv.setViewName("formularioMotores");
         return mv;
     }
     
     @RequestMapping("bajaMotor.htm")
     public ModelAndView bajaMotor(@ModelAttribute Motor mot) {                   
-        System.out.println("Dar de baja "+mot.getDescripcion()+" numero id "+mot.getIdmotor());
-        //Integer numero = mot.getIdmotor();
-        //System.out.println("numero "+numero);
-        //Motor m = motor.read(numero);
         motor.delete(mot);
-        mv.addObject("motor", mot);
         mv.setViewName("formularioMotores");
         return mv;
     }
     
     @RequestMapping("modificarMotor.htm")
     public ModelAndView modificacarnMotor(@ModelAttribute Motor mot) {
-        System.out.println("Modificar motor -> "+mot.getDescripcion());
-        Motor mo = motor.update(mot);
-        mv.addObject("motor", mo);
+        motor.update(mot);
         mv.setViewName("formularioMotores");
         return mv;
     }

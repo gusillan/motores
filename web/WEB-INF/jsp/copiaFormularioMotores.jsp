@@ -2,6 +2,9 @@
     Document   : altaMotorAjax
     Created on : 02-abr-2014, 22:52:32
     Author     : Gustabo
+
+    Copia realizada el 18 de Septiembre 2014
+
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -19,10 +22,10 @@
 
         <script>
             /*$(document).ready(function() {
-             alert("jQuery esta funcionando !!");
-             });
-             
-             */
+                alert("jQuery esta funcionando !!");
+            });
+
+*/
             /*$(document).ready(function() {
              $("#formMotor").validate({
              rules: {
@@ -45,7 +48,7 @@
 
         <script>
             var objeto = new XMLHttpRequest;
-
+           
 
             function comprobarCodigoMotor() {
                 var codigo = document.getElementById("codigo").value.toUpperCase();
@@ -59,9 +62,10 @@
                     alert("Tiene que introducir algún caracter");
                     document.getElementById("codigo").focus();
                 }
+
             }
 
-            function selecciona(numero) {
+            function funcion1(numero) {
                 var n = parseInt(numero);
                 rellenaFormulario(n);
             }
@@ -80,22 +84,23 @@
                         if (respuesta == true) {
                             alta();
                         } else {
-                            inicio();
+                            borrarCodigo();
                         }
                     }
                     else if (codigo.length === 1) {
                         rellenaFormulario(0);
                     }
                     else if (codigo.length > 1) {
-                        cargarOpcionesEmergente();
+                        myventana = window.open("selector.htm", "miventana", "width=300,height=300,top=150,left=900");
                     }
                 }
             }
-            
-            function cargarOpcionesEmergente() {
-                var s = document.getElementById("opciones");
+            function cargarOpcionesSecundaria() {
+                myventana.document.getElementById("pru").innerHTML = "<p>Motores</p>";
+                var s = myventana.document.getElementById("opciones");
+
                 for (p = 0; p < codigo.length; p++) {
-                    var opt = document.createElement("option");
+                    var opt = myventana.document.createElement("option");
                     opt.value = p;
                     opt.text = codigo.item(p).firstChild.nodeValue + " - " + descripcion.item(p).firstChild.nodeValue;
                     s.add(opt, p);
@@ -104,8 +109,11 @@
                 document.getElementById("ir").disabled = true;
                 document.getElementById("botonBaja").disabled = false;
                 document.getElementById("botonModificar").disabled = false;
-                document.getElementById("ventanaEmergente").style.display = 'block';
-
+                myventana.focus();
+            }
+            function listado() {
+                //alert("listado");
+                location.href = "Motores/listaMotor.htm";
             }
             function rellenaFormulario(n) {
                 document.getElementById("idmotor").value = idmotor.item(n).firstChild.nodeValue;
@@ -119,54 +127,38 @@
                 document.getElementById("botonBaja").disabled = false;
                 document.getElementById("botonModificar").disabled = false;
                 document.getElementById("ir").disabled = true;
+
             }
-            
-            function inicio() {                
-                document.getElementById("formMotor").action = "";
+            function inicio() {
                 document.getElementById("codigo").value = "";
                 document.getElementById("codigo").focus();
                 document.getElementById("botonAlta").disabled = true;
                 document.getElementById("botonBaja").disabled = true;
                 document.getElementById("botonModificar").disabled = true;
                 document.getElementById("ir").disabled = false;
-                document.getElementById("opciones").options.length = 0;
-                document.getElementById("ventanaEmergente").style.display = 'none';
+                
             }
-            
             function alta() {
                 document.getElementById("botonAlta").disabled = false;
-                document.getElementById("opciones").options.length = 0;
-                document.getElementById("ventanaEmergente").style.display = 'none';
                 document.getElementById("descripcion").focus();
             }
-            
             function darDeAlta() {
                 document.getElementById("formMotor").action = "altaMotor.htm";
                 document.getElementById("formMotor").submit();
-                inicio();
             }
 
             function darDeBaja() {
-                respuesta = confirm("Seguro que desea dar de baja este motor?");
-                if (respuesta == true) {
-                    document.getElementById("formMotor").action = "bajaMotor.htm";
-                    document.getElementById("formMotor").submit();
-
-                } else {
-                    inicio();
-                }
+                document.getElementById("formMotor").action = "bajaMotor.htm";
+                document.getElementById("formMotor").submit();
             }
 
             function modificar() {
                 document.getElementById("formMotor").action = "modificarMotor.htm";
                 document.getElementById("formMotor").submit();
             }
-                                    
-            function seleccionOpcion() {
-                var eleccion = document.getElementById("opciones").selectedIndex;
-                selecciona(eleccion);
-                document.getElementById("ventanaEmergente").style.display = 'none';
-            }
+
+
+
 
         </script>
 
@@ -174,27 +166,18 @@
     <body>
         <h1>Formulario de Motores</h1>
         <br>
-        <div id="ventanaEmergente">
-            <h1 class="titulo">Selección de Motores</h1>
-            
-            <select id="opciones" size="8" style="width: 270px"></select>
-            <br>
-            <br>
-            <input type="button" name="seleccionar" value="Seleccionar" onclick="seleccionOpcion();">
-            <input type="button" name="alta" value="Dar de Alta" onclick="alta();">
-            <input type="button" name="cancelar" value="Cancelar" onclick="inicio();">
-        </div>
 
 
         <form name="formMotor" id="formMotor" action="" method="POST">
             <fieldset><legend>Datos del motor</legend>
-                <p><label>Nº Motor : </label><input name="idmotor" id="idmotor" size="4"/>
+                <p><label>Nº Motor</label>
+                    <input name="idmotor" id="idmotor" size="4"/>
                 <p><label>Código : </label><input name="codigo" id="codigo" size="10" class="mayuscula"/>
                     <input type="button" id="ir" value="Ir" onclick="comprobarCodigoMotor();"</p>
                 <p><label>Descripción : </label><input name="descripcion" id="descripcion" size="40" 
                                                        onkeyup="this.value = this.value.toUpperCase();"
                                                        class = "mayuscula"/></p>
-                <p><label>Cilindrada : </label><input name="cilindrada" id="cilindrada" size="8"/>
+                <p><label>Cilindrada : </label><input name="cilindrada" id="cilindrada" class="required" size="8"/>
                     <label>Kw : </label><input name="kilowatios" id="kilowatios" size="4"/>
                     <label>Cv : </label><input name="cv" id="cv" disabled="true" size ="4"/></p>            
             </fieldset>
@@ -204,11 +187,14 @@
                     <input type="submit" value="Alta" id="botonAlta" disabled ="false" onclick="darDeAlta();"/>
                     <input type="submit" value="Baja" id="botonBaja" disabled ="false" onclick="darDeBaja();" />
                     <input type="submit" value="Modificar" id="botonModificar" disabled ="false" onclick="modificar();"/>
-                    <input type="reset" value="Limpiar Formulario" id="borrarFormulario" onclick="inicio();"/>                    
-                    <input type="button" value="Listado" onclick="window.location.href='listaMotor.htm';"/> 
+                    <input type="reset" value="Limpiar Formulario" id="borrarFormulario" onclick="inicio();"/>
+                    <input type="submit" value="Listado" onclick="location = '/Motores/listaMotor.htm';"/>
                 </div>
             </fieldset>
-            <br>           
+
+
+            <br>
+            <div id="resultado"></div>
         </form>
 
     </body>

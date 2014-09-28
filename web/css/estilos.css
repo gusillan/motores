@@ -21,3 +21,19 @@ input.mayuscula {
     background-color: #D3D3D3;
 
 }
+#ventanaEmergente {
+    background-color: white;
+    width : 350px;
+    height : 250px;
+    padding: 20px;
+    margin-left: 450px;
+    top : 50px;
+    border: solid 2px red;
+    border-radius: 10px;
+    position : fixed;   
+    z-index: 999;
+    display: none;
+}
+.titulo{
+    background-color: red;
+}
