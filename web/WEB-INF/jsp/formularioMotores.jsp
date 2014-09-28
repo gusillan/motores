@@ -5,59 +5,106 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Formulario Motores</title>
-        <!--ESTILOS CSS -->
+        
+        <!--ESTILOS CSS -->  
+        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css" type="text/css" />
         <link rel="stylesheet" href="css/estilos.css" type="text/css" />
     </head>
-    <body>
-        <h1>Formulario de Motores</h1>
-        <br>
+    <body role="document">
+        <div class="container">
+            <h1 class="center-block">Formulario de Motores</h1>
+            <form  role="form" name="formMotor" id="formMotor" class="form-horizontal" action="" method="POST">
+                <div class="form-group">
+                    <label for="idmotor" class="col-sm-2 control-label">Nº Motor</label>
+                    <div class="col-sm-2">
+                        <input type="text"  name="idmotor" id="idmotor" class="form-control mayuscula" size="4" required/>   
+                    </div>          
+                </div>
+ 
+                <legend>Datos del motor</legend>
+                <div class="form-group">
+                    <label for="codigo" class="col-sm-2 control-label">Código</label>
+                    <div class="col-sm-2">
+                        <div class="input-group">
+                            <input type="text" name="codigo" id="codigo" class="form-control mayuscula" id="matricula" required/>
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" type="button" id="ir" data-toggle="modal" data-target="#ventanaSelectora">Ir</button>
+                            </span>
+                        </div><!-- /input-group -->
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="descripcion" class="col-sm-2 control-label">Descripción</label>
+                    <div class="col-sm-8">
+                        <input type="text"  name="descripcion" id="descripcion" class="form-control mayuscula" size="40"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cilindrada" class="col-sm-2 control-label">Cilindrada</label>
+                    <div class="col-sm-2">
+                        <input type="number" name="cilindrada" id="cilindrada" class="form-control" size="8" required/>
+                    </div>
+                    <label for="kilowatios" class="col-sm-1 control-label">Kw</label>
+                    <div class="col-sm-2">
+                        <input type="number" name="kilowatios" id="kilowatios" class="form-control" size="4"/>
+                    </div>
+                    <label for="cv" class="col-sm-1 control-label">Cv</label>
+                    <div class="col-sm-2">
+                        <input type="number" name="cv" id="cv" disabled="true" class="form-control" size ="4"/>            
+                    </div>
+                </div>
+            
+                <legend>Menú de opciones</legend>
+                <div class="navbar navbar-inverse">
+                    <div class="container">
+                        <div class="btn-group">
+                            <input type="submit" value="Alta" id="botonAlta" class="btn btn-primary navbar-btn" disabled ="false"/>
+                            <input type="submit" value="Baja" id="botonBaja" class="btn btn-danger navbar-btn" disabled ="false"/>
+                            <input type="submit" value="Modificar" id="botonModificar" class="btn btn-warning navbar-btn" disabled ="false"/>
+                        </div>
+                        <input type="reset" value="Limpiar Formulario" id="borrarFormulario" class="btn btn-primary navbar-btn"/>
+                        <a href="listaMotor.htm" role="button" class="btn btn-info navbar-btn navbar-btn">Listado</a>
+                    </div>
+                </div>
+                
+                <div id="resultado"></div>
+            </form>     
+            
+        </div><!-- container -->
+        
+        
+        <!-- ventana selectora para codigo de motor -->
+        <div class="modal fade" id="ventanaSelectora" tabindex="-1" role="dialog" aria-labelledby="modal1Label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="modal1Label">Ventana Selectora</h4>
+                    </div>
+                    <div class="modal-body">
+                        <select id="opciones">
 
-        <form name="formMotor" id="formMotor" action="" method="POST">
-            <fieldset><legend>Datos del motor</legend>
-                <div>
-                    <label>Nº Motor</label>
-                    <input type="text"  name="idmotor" id="idmotor" class="mayuscula" size="4" required/>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" name="seleccionar" value="Seleccionar" onclick="seleccionOpcion();">
+                        <input type="button" name="alta" value="Dar de Alta" onclick="alta();">
+                        <input type="button" name="cancelar" value="Cancelar" data-dismiss="modal">
+                    </div>
                 </div>
-                <div>
-                    <label>Código</label>
-                    <input type="text"  name="codigo" id="codigo" class="mayuscula" size="10" required/>
-                    <input type="button" id="ir" value="Ir" />
-                </div>
-                <div>
-                    <label>Descripción</label>
-                    <input type="text"  name="descripcion" id="descripcion" class="mayuscula" size="40"/>
-                </div>
-                <div>
-                    <label>Cilindrada</label>
-                    <input type="number" name="cilindrada" id="cilindrada" size="8" required/>
-                    <label>Kw</label>
-                    <input type="number" name="kilowatios" id="kilowatios" size="4"/>
-                    <label>Cv</label>
-                    <input type="number" name="cv" id="cv" disabled="true" size ="4"/>            
-                </div>
-            </fieldset>
-
-            <fieldset style color="black"><legend>Menú de opciones</legend>
-                <div id="menu">
-                    <input type="submit" value="Alta" id="botonAlta" disabled ="false"/>
-                    <input type="submit" value="Baja" id="botonBaja" disabled ="false"/>
-                    <input type="submit" value="Modificar" id="botonModificar" disabled ="false"/>
-                    <input type="reset" value="Limpiar Formulario" id="borrarFormulario"/>
-                    <a href="listaMotor.htm"><button type="button">Listado</button></a>
-                </div>
-            </fieldset>
-
-            <br>
-            <div id="resultado"></div>
-        </form>
-
+            </div>
+        </div>
+        
+        
     </body>
     
     <!--LIBRERIAS JQUERY -->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script>						//Respaldo para cuando Jquery no carga de internet
-      if (!window.jQuery) document.write('<script type="text/javascript" src="js/jquery-1.11.1.min.js"><\/script>');
+        if (!window.jQuery) document.write('<script type="text/javascript" src="js/jquery-1.11.1.min.js"><\/script>');
     </script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/formularioMotores.js"></script>
 
 </html>

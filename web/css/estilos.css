@@ -9,14 +9,12 @@
 
 
 body {
-    color: #000000;
-    background-color: #FFE4C4;
-    font-family: Tahoma;
+    background: #FFE4C4;
 }
 input.mayuscula {
     text-transform: uppercase;
 }
-#menu {
-    background-color: #D3D3D3;
 
+#formMotor{
+    margin-top: 5em;
 }
