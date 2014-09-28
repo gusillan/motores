@@ -1,3 +1,4 @@
+@charset "utf-8";
 /* 
     Document   : estilos
     Created on : 15-sep-2014, 20:46:19
@@ -6,34 +7,14 @@
         Purpose of the stylesheet follows.
 */
 
-root { 
-    display: block;
-}
+
 body {
-    color: #000000;
-    background-color: #FFE4C4;
-    font-family: Tahoma;
+    background: #FFE4C4;
 }
 input.mayuscula {
     text-transform: uppercase;
 }
-#menu {
-    background-color: #D3D3D3;
 
-}
-#ventanaEmergente {
-    background-color: white;
-    width : 350px;
-    height : 250px;
-    padding: 20px;
-    margin-left: 450px;
-    top : 50px;
-    border: solid 2px red;
-    border-radius: 10px;
-    position : fixed;   
-    z-index: 999;
-    display: none;
-}
-.titulo{
-    background-color: red;
+#formMotor{
+    margin-top: 5em;
 }

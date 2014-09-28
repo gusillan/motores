@@ -20,7 +20,7 @@
             }
 
             function seleccionOpcion() {
-                var eleccion = document.getElementById("opciones").options.value;
+                var eleccion = document.getElementById("opciones").selectedIndex;
                 window.opener.funcion1(eleccion);
                 window.close();
             }
