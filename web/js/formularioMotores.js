@@ -31,6 +31,7 @@ $(document).ready(function(){
     $("#codigo").focus();                   // Es igual que document.getElementById("codigo").focus();
 });
 
+
 var objeto = new XMLHttpRequest;
 
 function comprobarCodigoMotor() {
@@ -48,17 +49,11 @@ function comprobarCodigoMotor() {
 
 }
 
-function selecciona(numero) {
+
+function funcion1(numero) {
     var n = parseInt(numero);
     rellenaFormulario(n);
 }
-function seleccionOpcion() {
-                var eleccion = document.getElementById("opciones").selectedIndex;
-                selecciona(eleccion);
-                
-              
-            }
-
 
 function muestravalor() {
     if (objeto.readyState === 4) {
@@ -82,16 +77,16 @@ function muestravalor() {
             rellenaFormulario(0);
         }
         else if (codigo.length > 1) {
-            cargarOpcionesSecundaria();
+            myventana = window.open("selector.htm", "miventana", "width=300,height=300,top=150,left=900");
         }
     }
 }
 function cargarOpcionesSecundaria() {
-    
-    var s = document.getElementById("opciones");
+    myventana.document.getElementById("pru").innerHTML = "<p>Motores</p>";
+    var s = myventana.document.getElementById("opciones");
 
     for (p = 0; p < codigo.length; p++) {
-        var opt = document.createElement("option");
+        var opt = myventana.document.createElement("option");
         opt.value = p;
         opt.text = codigo.item(p).firstChild.nodeValue + " - " + descripcion.item(p).firstChild.nodeValue;
         s.add(opt, p);
@@ -100,7 +95,7 @@ function cargarOpcionesSecundaria() {
     document.getElementById("ir").disabled = true;
     document.getElementById("botonBaja").disabled = false;
     document.getElementById("botonModificar").disabled = false;
-  
+    myventana.focus();
 }
 //            function listado() {
 //                //alert("listado");
