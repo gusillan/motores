@@ -42,10 +42,10 @@ function comprobarCodigoMotor() {
     var codigo = document.getElementById("codigo").value.toUpperCase();
     
     if (codigo !== "") {
-//        objeto.open("POST", "consultaCodigoMotor.htm", true);
-//        objeto.onreadystatechange = muestravalor;
-//        objeto.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-//        objeto.send("codigo=" + codigo);
+        objeto.open("POST", "consultaCodigoMotor.htm", true);
+        objeto.onreadystatechange = muestravalor;
+        objeto.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        objeto.send("codigo=" + codigo);
     } else {
         alert("Tiene que introducir algún caracter");
         document.getElementById("codigo").focus();
