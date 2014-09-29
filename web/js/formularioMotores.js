@@ -5,29 +5,29 @@
  */
 
 /* Listeners */
-$("#botonAlta").click(function(){
+$("#botonAlta").click(function() {
     darDeAlta();
 });
-$("#botonBaja").click(function(){
+$("#botonBaja").click(function() {
     darDeBaja();
 });
-$("#botonModificar").click(function(){
+$("#botonModificar").click(function() {
     modificar();
 });
-$("#ir").click(function(){
+$("#ir").click(function() {
     comprobarCodigoMotor();
 });
 
-$("#borrarFormulario").click(function(){
-     $("#codigo").focus();
+$("#borrarFormulario").click(function() {
+    $("#codigo").focus();
 });
-$("input[type=text]").keyup(function(){     //Todos los input tipo text se hacen mayusculas
+$("input[type=text]").keyup(function() {     //Todos los input tipo text se hacen mayusculas
     var cadena = $(this).val();
     cadena = cadena.toUpperCase();
     $(this).val(cadena);
 });
 
-$(document).ready(function(){     
+$(document).ready(function() {
     $("#codigo").focus();                   // Es igual que document.getElementById("codigo").focus();
 });
 
@@ -36,7 +36,7 @@ var objeto = new XMLHttpRequest;
 
 function comprobarCodigoMotor() {
     var codigo = document.getElementById("codigo").value.toUpperCase();
-    
+
     if (codigo !== "") {
         objeto.open("POST", "consultaCodigoMotor.htm", true);
         objeto.onreadystatechange = muestravalor;
@@ -49,10 +49,11 @@ function comprobarCodigoMotor() {
 
 }
 
-
-function funcion1(numero) {
-    var n = parseInt(numero);
+function seleccionOpcion() {
+    var eleccion = document.getElementById("opciones").selectedIndex;
+    var n = parseInt(eleccion);
     rellenaFormulario(n);
+    // Aqui debe ir la funcion para acultar la vantana modal
 }
 
 function muestravalor() {
@@ -77,16 +78,16 @@ function muestravalor() {
             rellenaFormulario(0);
         }
         else if (codigo.length > 1) {
-            myventana = window.open("selector.htm", "miventana", "width=300,height=300,top=150,left=900");
+            cargarOpcionesSecundaria();
         }
     }
 }
 function cargarOpcionesSecundaria() {
-    myventana.document.getElementById("pru").innerHTML = "<p>Motores</p>";
-    var s = myventana.document.getElementById("opciones");
+
+    var s = document.getElementById("opciones");
 
     for (p = 0; p < codigo.length; p++) {
-        var opt = myventana.document.createElement("option");
+        var opt = document.createElement("option");
         opt.value = p;
         opt.text = codigo.item(p).firstChild.nodeValue + " - " + descripcion.item(p).firstChild.nodeValue;
         s.add(opt, p);
@@ -95,12 +96,9 @@ function cargarOpcionesSecundaria() {
     document.getElementById("ir").disabled = true;
     document.getElementById("botonBaja").disabled = false;
     document.getElementById("botonModificar").disabled = false;
-    myventana.focus();
+
 }
-//            function listado() {
-//                //alert("listado");
-//                location.href = "Motores/listaMotor.htm";
-//            }
+
 function rellenaFormulario(n) {
     document.getElementById("idmotor").value = idmotor.item(n).firstChild.nodeValue;
     document.getElementById("codigo").value = codigo.item(n).firstChild.nodeValue;
@@ -115,14 +113,7 @@ function rellenaFormulario(n) {
     document.getElementById("ir").disabled = true;
 
 }
-//            function inicio() {
-//                document.getElementById("codigo").value = "";
-//                document.getElementById("codigo").focus();
-//                document.getElementById("botonAlta").disabled = true;
-//                document.getElementById("botonBaja").disabled = true;
-//                document.getElementById("botonModificar").disabled = true;
-//                document.getElementById("ir").disabled = false;
-//            }
+
 function alta() {
     document.getElementById("botonAlta").disabled = false;
     document.getElementById("descripcion").focus();
@@ -145,6 +136,6 @@ function modificar() {
 
 
 
-   
+
 
 

@@ -83,7 +83,7 @@
                         <h4 class="modal-title" id="modal1Label">Ventana Selectora</h4>
                     </div>
                     <div class="modal-body">
-                        <select id="opciones">
+                        <select id="opciones" size="8" style="width: 270px">
 
                         </select>
                     </div>
