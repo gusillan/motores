@@ -29,7 +29,7 @@
                         <div class="input-group">
                             <input type="text" name="codigo" id="codigo" class="form-control mayuscula" id="matricula" required/>
                             <span class="input-group-btn">
-                                <button class="btn btn-primary" type="button" id="ir" data-toggle="modal" data-target="#ventanaSelectora">Ir</button>
+                                <button class="btn btn-primary" type="button" id="ir" data-target="#ventanaSelectora">Ir</button>
                             </span>
                         </div><!-- /input-group -->
                     </div>
@@ -83,13 +83,13 @@
                         <h4 class="modal-title" id="modal1Label">Ventana Selectora</h4>
                     </div>
                     <div class="modal-body">
-                        <select id="opciones" size="8" style="width: 270px">
+                        <select id="opciones" size="8">
 
                         </select>
                     </div>
                     <div class="modal-footer">
-                        <input type="button" name="seleccionar" value="Seleccionar" onclick="seleccionOpcion();">
-                        <input type="button" name="alta" value="Dar de Alta" onclick="alta();">
+                        <input type="button" name="seleccionar" value="Seleccionar" onclick="seleccionOpcion();"  data-dismiss="modal">
+                        <input type="button" name="alta" value="Dar de Alta" onclick="alta();" data-dismiss="modal">
                         <input type="button" name="cancelar" value="Cancelar" data-dismiss="modal">
                     </div>
                 </div>

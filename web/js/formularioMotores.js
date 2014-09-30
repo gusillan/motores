@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 
+
+
 /* Listeners */
+/****************************************************************************/
 $("#botonAlta").click(function() {
     darDeAlta();
 });
@@ -32,6 +35,32 @@ $(document).ready(function() {
 });
 
 
+
+/* Configuracion de inicio */
+/****************************************************************************/
+$('#ventanaSelectora').on('loaded.bs.modal', function() {
+    console.log("cargado");
+});
+$('#ventanaSelectora').on('show.bs.modal', function() {
+    console.log("aparece");
+});
+
+$("document").ready(function(){
+    
+
+});
+
+
+
+
+
+
+
+
+
+
+/* Ventana selectora de codigo motor */
+/****************************************************************************/
 var objeto = new XMLHttpRequest;
 
 function comprobarCodigoMotor() {
@@ -42,6 +71,7 @@ function comprobarCodigoMotor() {
         objeto.onreadystatechange = muestravalor;
         objeto.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         objeto.send("codigo=" + codigo);
+        $('#ventanaSelectora').modal('show');
     } else {
         alert("Tiene que introducir algún caracter");
         document.getElementById("codigo").focus();
@@ -114,6 +144,10 @@ function rellenaFormulario(n) {
 
 }
 
+
+
+/* Funciones de elementales del formulario */
+/****************************************************************************/
 function alta() {
     document.getElementById("botonAlta").disabled = false;
     document.getElementById("descripcion").focus();
