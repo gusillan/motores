@@ -18,3 +18,15 @@ input.mayuscula {
 #formMotor{
     margin-top: 5em;
 }
+
+
+.modal .modal-body {
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+
+
+#codeList{
+    width: 100%;
+}

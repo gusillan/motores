@@ -18,7 +18,7 @@
                 <div class="form-group">
                     <label for="idmotor" class="col-sm-2 control-label">Nº Motor</label>
                     <div class="col-sm-2">
-                        <input type="text"  name="idmotor" id="idmotor" class="form-control mayuscula" size="4" required/>   
+                        <input type="text"  name="idmotor" id="idmotor" class="form-control mayuscula" size="4" readonly/>   
                     </div>          
                 </div>
  
@@ -37,7 +37,7 @@
                 <div class="form-group">
                     <label for="descripcion" class="col-sm-2 control-label">Descripción</label>
                     <div class="col-sm-8">
-                        <input type="text"  name="descripcion" id="descripcion" class="form-control mayuscula" size="40"/>
+                        <input type="text"  name="descripcion" id="descripcion" class="form-control mayuscula" size="40" required/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -47,7 +47,7 @@
                     </div>
                     <label for="kilowatios" class="col-sm-1 control-label">Kw</label>
                     <div class="col-sm-2">
-                        <input type="number" name="kilowatios" id="kilowatios" class="form-control" size="4"/>
+                        <input type="number" name="kilowatios" id="kilowatios" class="form-control" size="4" required/>
                     </div>
                     <label for="cv" class="col-sm-1 control-label">Cv</label>
                     <div class="col-sm-2">
@@ -59,9 +59,9 @@
                 <div class="navbar navbar-inverse">
                     <div class="container">
                         <div class="btn-group">
-                            <input type="submit" value="Alta" id="botonAlta" class="btn btn-primary navbar-btn" disabled ="false"/>
-                            <input type="submit" value="Baja" id="botonBaja" class="btn btn-danger navbar-btn" disabled ="false"/>
-                            <input type="submit" value="Modificar" id="botonModificar" class="btn btn-warning navbar-btn" disabled ="false"/>
+                            <input type="submit" formaction="altaMotor.htm" value="Alta" id="botonAlta" class="btn btn-primary navbar-btn" disabled ="false"/>
+                            <input type="submit" formaction="bajaMotor.htm" value="Baja" id="botonBaja" class="btn btn-danger navbar-btn" disabled ="false"/>
+                            <input type="submit" formaction="modificarMotor.htm" value="Modificar" id="botonModificar" class="btn btn-warning navbar-btn" disabled ="false"/>
                         </div>
                         <input type="reset" value="Limpiar Formulario" id="borrarFormulario" class="btn btn-primary navbar-btn"/>
                         <a href="listaMotor.htm" role="button" class="btn btn-info navbar-btn navbar-btn">Listado</a>
@@ -83,12 +83,12 @@
                         <h4 class="modal-title" id="modal1Label">Ventana Selectora</h4>
                     </div>
                     <div class="modal-body">
-                        <select id="opciones" size="8">
+                        <select class="list-group" id="codeList" size="10"><!--data-dismiss="modal"-->
 
                         </select>
                     </div>
                     <div class="modal-footer">
-                        <input type="button" name="seleccionar" value="Seleccionar" onclick="seleccionOpcion();"  data-dismiss="modal">
+                        <input type="button" id="seleccionar" name="seleccionar" value="Seleccionar" onclick="seleccionOpcion();"  data-dismiss="modal">
                         <input type="button" name="alta" value="Dar de Alta" onclick="alta();" data-dismiss="modal">
                         <input type="button" name="cancelar" value="Cancelar" data-dismiss="modal">
                     </div>

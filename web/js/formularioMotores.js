@@ -8,21 +8,17 @@
 
 /* Listeners */
 /****************************************************************************/
-$("#botonAlta").click(function() {
-    darDeAlta();
-});
-$("#botonBaja").click(function() {
-    darDeBaja();
-});
-$("#botonModificar").click(function() {
-    modificar();
-});
 $("#ir").click(function() {
     comprobarCodigoMotor();
 });
 
 $("#borrarFormulario").click(function() {
     $("#codigo").focus();
+    document.getElementById("botonAlta").disabled = true;
+    document.getElementById("botonBaja").disabled = true;
+    document.getElementById("botonModificar").disabled = true;
+    document.getElementById("ir").disabled = false;
+    document.getElementById("codigo").readOnly = false;   
 });
 $("input[type=text]").keyup(function() {     //Todos los input tipo text se hacen mayusculas
     var cadena = $(this).val();
@@ -38,24 +34,9 @@ $(document).ready(function() {
 
 /* Configuracion de inicio */
 /****************************************************************************/
-$('#ventanaSelectora').on('loaded.bs.modal', function() {
-    console.log("cargado");
-});
-$('#ventanaSelectora').on('show.bs.modal', function() {
-    console.log("aparece");
-});
-
-$("document").ready(function(){
-    
+$("document").ready(function() {
 
 });
-
-
-
-
-
-
-
 
 
 
@@ -71,7 +52,6 @@ function comprobarCodigoMotor() {
         objeto.onreadystatechange = muestravalor;
         objeto.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         objeto.send("codigo=" + codigo);
-        $('#ventanaSelectora').modal('show');
     } else {
         alert("Tiene que introducir algún caracter");
         document.getElementById("codigo").focus();
@@ -80,7 +60,7 @@ function comprobarCodigoMotor() {
 }
 
 function seleccionOpcion() {
-    var eleccion = document.getElementById("opciones").selectedIndex;
+    var eleccion = document.getElementById("codeList").selectedIndex;
     var n = parseInt(eleccion);
     rellenaFormulario(n);
     // Aqui debe ir la funcion para acultar la vantana modal
@@ -109,25 +89,26 @@ function muestravalor() {
         }
         else if (codigo.length > 1) {
             cargarOpcionesSecundaria();
+            $('#ventanaSelectora').modal('show');
         }
     }
 }
+
 function cargarOpcionesSecundaria() {
 
-    var s = document.getElementById("opciones");
+    var s = document.getElementById("codeList");
 
-    for (p = 0; p < codigo.length; p++) {
+    for (var p = 0; p < codigo.length; p++) {
         var opt = document.createElement("option");
         opt.value = p;
         opt.text = codigo.item(p).firstChild.nodeValue + " - " + descripcion.item(p).firstChild.nodeValue;
         s.add(opt, p);
     }
     s.options[0].selected = "selected";
-    document.getElementById("ir").disabled = true;
-    document.getElementById("botonBaja").disabled = false;
-    document.getElementById("botonModificar").disabled = false;
-
 }
+
+
+
 
 function rellenaFormulario(n) {
     document.getElementById("idmotor").value = idmotor.item(n).firstChild.nodeValue;
@@ -141,7 +122,7 @@ function rellenaFormulario(n) {
     document.getElementById("botonBaja").disabled = false;
     document.getElementById("botonModificar").disabled = false;
     document.getElementById("ir").disabled = true;
-
+    document.getElementById("codigo").readOnly = true;
 }
 
 
@@ -151,20 +132,6 @@ function rellenaFormulario(n) {
 function alta() {
     document.getElementById("botonAlta").disabled = false;
     document.getElementById("descripcion").focus();
-}
-function darDeAlta() {
-    document.getElementById("formMotor").action = "altaMotor.htm";
-    document.getElementById("formMotor").submit();
-}
-
-function darDeBaja() {
-    document.getElementById("formMotor").action = "bajaMotor.htm";
-    document.getElementById("formMotor").submit();
-}
-
-function modificar() {
-    document.getElementById("formMotor").action = "modificarMotor.htm";
-    document.getElementById("formMotor").submit();
 }
 
 
