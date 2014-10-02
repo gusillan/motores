@@ -45,9 +45,9 @@
                     <div class="col-sm-2">
                         <input type="number" name="cilindrada" id="cilindrada" class="form-control" size="8" required/>
                     </div>
-                    <label for="kilowatios" class="col-sm-1 control-label">Kw</label>
+                    <label for="kilowatios"  class="col-sm-1 control-label">Kw</label>
                     <div class="col-sm-2">
-                        <input type="number" name="kilowatios" id="kilowatios" class="form-control" size="4" required/>
+                        <input type="number" step="0.01" min="0" name="kilowatios" id="kilowatios" class="form-control" size="4" required/>
                     </div>
                     <label for="cv" class="col-sm-1 control-label">Cv</label>
                     <div class="col-sm-2">
