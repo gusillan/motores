@@ -45,11 +45,11 @@ public class MotorController {
     }
 
     @RequestMapping("altaMotor.htm")
-    public ModelAndView altaMotor(@ModelAttribute Motor mot) {
+    public void altaMotor(@ModelAttribute Motor mot, HttpServletResponse response) throws IOException {
         System.err.println("/////***** OJO SE VA A DAR DE ALTA ****** ////"+mot.getDescripcion() );
         motor.create(mot);
-        mv.setViewName("formularioMotores");
-        return mv;
+        response.sendRedirect("formularioMotores.htm");
+        
     }
     
     @RequestMapping("bajaMotor.htm")
