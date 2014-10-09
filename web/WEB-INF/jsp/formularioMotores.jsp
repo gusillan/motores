@@ -75,7 +75,7 @@
         
         
         <!-- ventana selectora para codigo de motor -->
-        <div class="modal fade" id="ventanaSelectora" tabindex="-1" role="dialog" aria-labelledby="modal1Label" aria-hidden="true">
+        <div class="modal" id="ventanaSelectora" tabindex="-1" role="dialog" aria-labelledby="modal1Label" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">

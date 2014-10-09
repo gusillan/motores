@@ -5,9 +5,21 @@
  */
 
 
+//bajar, subir y elegir opcion dentro del modal
+var KEY_ENTER=13;
+var KEY_LEFT=37;
+var KEY_UP=38;
+var KEY_RIGHT=39;
+var KEY_DOWN=40;
+
 
 /* Listeners */
 /****************************************************************************/
+$("#codigo").keyup(function(event){
+    if(event.keyCode === KEY_ENTER){
+        $("#ir").click();
+    }
+});
 $("#ir").click(function() {
     comprobarCodigoMotor();
 });
@@ -28,6 +40,32 @@ $("input[type=text]").keyup(function() {     //Todos los input tipo text se hace
 
 $(document).ready(function() {
     $("#codigo").focus();                   // Es igual que document.getElementById("codigo").focus();
+});
+
+
+
+$('#ventanaSelectora').on('shown.bs.modal', function () {
+    var codeList = document.getElementById("codeList")
+    var selected = codeList.selectedIndex;
+    var length = codeList.options.length;
+
+    $("#ventanaSelectora").keyup(function(event){
+        if(event.keyCode === KEY_ENTER){
+            console.log("enter");
+            $("#seleccionar").click();
+        }else if(event.keyCode === KEY_UP){
+            console.log("up");
+            if(selected>0)
+                selected--;
+            codeList.options[selected].selected = true;
+        }else if(event.keyCode === KEY_DOWN){
+            console.log("down");
+            if(selected<length-1)
+                selected++;
+            codeList.options[selected].selected = true;
+        }
+        
+    });
 });
 
 
@@ -98,6 +136,8 @@ function cargarOpcionesSecundaria() {
 
     var s = document.getElementById("codeList");
 
+    $("#codeList option").remove(); //borra las opciones que pueda haber anteriores
+    
     for (var p = 0; p < codigo.length; p++) {
         var opt = document.createElement("option");
         opt.value = p;
