@@ -45,7 +45,7 @@ $(document).ready(function() {
 
 
 $('#ventanaSelectora').on('shown.bs.modal', function () {
-    var codeList = document.getElementById("codeList")
+    var codeList = document.getElementById("codeList");
     var selected = codeList.selectedIndex;
     var length = codeList.options.length;
 
