@@ -25,7 +25,7 @@
                 <legend>Datos del motor</legend>
                 <div class="form-group">
                     <label for="codigo" class="col-sm-2 control-label">Código</label>
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
                         <div class="input-group">
                             <input type="text" name="codigo" id="codigo" class="form-control mayuscula" id="matricula" required/>
                             <span class="input-group-btn">

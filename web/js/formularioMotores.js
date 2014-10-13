@@ -119,7 +119,7 @@ function muestravalor() {
             if (respuesta === true) {
                 alta();
             } else {
-                borrarCodigo();
+                $("#codigo").val("").focus();   //borra el codigo y pone el foco en él.
             }
         }
         else if (codigo.length === 1) {
